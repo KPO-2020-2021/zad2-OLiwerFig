@@ -1,13 +1,14 @@
 #include <iostream>
 #include "BazaTestu.hh"
-
+#include <fstream>
+#include "Statystyki.hh"
 using namespace std;
-
 
 
 
 int main(int argc, char **argv)
 {
+
 
   if (argc < 2) {
     cout << endl;
@@ -26,19 +27,46 @@ int main(int argc, char **argv)
   }
 
 
-  
+
   cout << endl;
   cout << " Start testu arytmetyki zespolonej: " << argv[1] << endl;
   cout << endl;
 
   WyrazenieZesp   WyrZ_PytanieTestowe;
-  
-  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
-    cout << " Czesc rzeczywista pierwszego argumentu: ";
-    cout << WyrZ_PytanieTestowe.Arg1.re << endl;
-  }
+  LZespolona wynik, obliczone;
+  Statystyka stat = {0,0,0};
 
-  
+  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
+std::cout<<"jaki wynik ma: "<<WyrZ_PytanieTestowe<<endl;
+std::cout<<"twoja odpowiedz to: "<<endl;
+for(int i=0; i<3; i++)
+{
+
+    std::cin>>wynik;
+    if(std::cin.good())
+        {
+            break;
+        }
+        std::cin.clear();
+        std::cin.ignore(1024,'\n');
+}
+stat.Wszystkie++;
+obliczone=Oblicz(WyrZ_PytanieTestowe);
+if(wynik==obliczone)
+{
+    std::cout<<"dobrze"<<std::endl;
+    stat.Poprawne++;
+}
+else
+{
+    std::cout<<"zle poprawna odpowiedz to: "<<obliczone<<std::endl;
+      stat.Bledne++;
+}
+
+  }
+ Wyswietl(stat);
+
+
   cout << endl;
   cout << " Koniec testu" << endl;
   cout << endl;
