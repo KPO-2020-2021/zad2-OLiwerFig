@@ -1,7 +1,9 @@
 #ifndef LZESPOLONA_HH
 #define LZESPOLONA_HH
-
+#define _USE_MATH_DEFINES
 #include <iostream>
+#include <cmath>
+
 
 #define EPSILON 0.01
 /*!
@@ -20,7 +22,6 @@ struct  LZespolona
   double   im;    /*! Pole repezentuje czesc urojona. */
 };
 
-
 /*
  * Dalej powinny pojawic sie zapowiedzi definicji przeciazen operatorow
  */
@@ -35,6 +36,10 @@ LZespolona  operator / (LZespolona  Skl1,  double  Skl2);
 double mod2(LZespolona Skl);
 LZespolona Sprzezenie(LZespolona Skl);
 void Wyswietl(LZespolona Skl);
+double arg(LZespolona Lz1);
+LZespolona  operator += (LZespolona &Lz1, LZespolona  Skl2);
+LZespolona  operator /= (LZespolona &Lz1, LZespolona  Skl2);
+
 ///////////////////////////////////////////////////////////////
 
 bool  operator == (LZespolona  Skl1,  LZespolona  Skl2);

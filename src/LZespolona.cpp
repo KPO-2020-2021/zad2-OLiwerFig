@@ -124,5 +124,35 @@ std::istream & operator >> (std::istream &wej, LZespolona &Skl)
 
     return wej;
 }
+///////////////////////////////////////////////
+double arg(LZespolona Lz1)
+  {
+      double wynik;
+      if(Lz1.re>0)
+      {
+          wynik=atan2(Lz1.im,Lz1.re) * 180 / M_PI;
+      }
+      else if (Lz1.re<0)
+      {
+          wynik=atan2(Lz1.im,Lz1.re) + M_PI * 180 / M_PI;
+      }  
 
 
+
+      else
+      {
+          throw " argument a jest zero wyjatek";
+      }
+      return wynik;
+
+  }
+LZespolona operator +=(LZespolona &Lz1, LZespolona  Skl2)
+{
+   Lz1=Lz1+Skl2;
+    return Lz1;
+}
+LZespolona operator /=(LZespolona &Lz1, LZespolona  Skl2)
+{
+    Lz1=Lz1/Skl2;
+    return Lz1;
+}
