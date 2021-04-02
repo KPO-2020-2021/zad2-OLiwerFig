@@ -20,6 +20,22 @@ struct  LZespolona
 {
   double   re;    /*! Pole repezentuje czesc rzeczywista. */
   double   im;    /*! Pole repezentuje czesc urojona. */
+  LZespolona  operator + (   LZespolona  Skl2);
+LZespolona  operator - (   LZespolona  Skl2);
+LZespolona  operator * (   LZespolona  Skl2);
+LZespolona  operator / (   LZespolona  Skl2);
+LZespolona  operator / (   double  Skl2);
+double mod2( );
+LZespolona Sprzezenie( );
+void Wyswietl( );
+double arg( );
+LZespolona  operator += (LZespolona  Skl2);
+LZespolona  operator /= ( LZespolona  Skl2);
+
+///////////////////////////////////////////////////////////////
+
+const bool  operator == (   LZespolona  Skl2)const;
+bool  operator != (   LZespolona  Skl2);
 };
 
 /*
@@ -28,22 +44,7 @@ struct  LZespolona
 
 
 
-LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona  operator / (LZespolona  Skl1,  double  Skl2);
-double mod2(LZespolona Skl);
-LZespolona Sprzezenie(LZespolona Skl);
-void Wyswietl(LZespolona Skl);
-double arg(LZespolona Lz1);
-LZespolona  operator += (LZespolona &Lz1, LZespolona  Skl2);
-LZespolona  operator /= (LZespolona &Lz1, LZespolona  Skl2);
 
-///////////////////////////////////////////////////////////////
-
-bool  operator == (LZespolona  Skl1,  LZespolona  Skl2);
-bool  operator != (LZespolona  Skl1,  LZespolona  Skl2);
 ///////////////////////////////////////////////////////////////
 
 

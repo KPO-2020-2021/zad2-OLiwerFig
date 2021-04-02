@@ -46,6 +46,9 @@ test:  ${TBIN}/test_1 ${TBIN}/test_2
 	${TBIN}/test_2
 run:
 	${TRGDIR}/test_arytm_zesp latwy
-
+latwy:
+	${TRGDIR}/test_arytm_zesp latwy
+trudny:
+	${TRGDIR}/test_arytm_zesp trudny
 clean:
 	rm -f ${TRGDIR}/test_arytm_zesp ${OBJ}/* ${TBIN}/*

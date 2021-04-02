@@ -9,7 +9,8 @@ using namespace std;
 int main(int argc, char **argv)
 {
 
-
+LZespolona a={1,1};
+cout<<a.arg()<<endl; //45
   if (argc < 2) {
     cout << endl;
     cout << " Brak opcji okreslajacej rodzaj testu." << endl;

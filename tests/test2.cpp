@@ -173,7 +173,7 @@ TEST_CASE("test LZespolona modul"){
 
 
 
-    CHECK( mod2(x) == t);
+    CHECK( x.mod2() == t);
 }
 
 TEST_CASE("test LZespolona sprzezenie"){
@@ -188,5 +188,5 @@ TEST_CASE("test LZespolona sprzezenie"){
 
 
 
-    CHECK(Sprzezenie(x) == y);
+    CHECK(x.Sprzezenie() == y);
 }

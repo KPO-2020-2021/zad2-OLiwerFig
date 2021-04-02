@@ -11,36 +11,36 @@
  * Zwraca:
  *    Sume dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona  LZespolona::operator + (   LZespolona  Skl2)
 {
   LZespolona  Wynik;
 
-  Wynik.re = Skl1.re + Skl2.re;
-  Wynik.im = Skl1.im + Skl2.im;
+  Wynik.re =  re + Skl2.re;
+  Wynik.im =  im + Skl2.im;
   return Wynik;
 }
 
-LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona  LZespolona::operator - (   LZespolona  Skl2)
 {
       LZespolona  Wynik;
 
-  Wynik.re = Skl1.re - Skl2.re;
-  Wynik.im = Skl1.im - Skl2.im;
+  Wynik.re =  re - Skl2.re;
+  Wynik.im =  im - Skl2.im;
   return Wynik;
 }
-LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona  LZespolona::operator * (   LZespolona  Skl2)
 {
           LZespolona  Wynik;
 
-  Wynik.re = Skl1.re *Skl2.re-Skl1.im * Skl2.im;
-  Wynik.im = Skl1.re *Skl2.im+Skl1.im *Skl2.re;
+  Wynik.re =  re *Skl2.re- im * Skl2.im;
+  Wynik.im =  re *Skl2.im+ im *Skl2.re;
   return Wynik;
 }
-LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona  LZespolona::operator / (   LZespolona  Skl2)
 {
- return Skl1*Sprzezenie(Skl2)/mod2(Skl2);
+ return *this*Skl2.Sprzezenie()/Skl2.mod2();
 }
-LZespolona  operator / (LZespolona  Skl1,  double  Skl2)
+LZespolona  LZespolona::operator / (   double  Skl2)
 {
 
 LZespolona  Wynik;
@@ -48,18 +48,18 @@ LZespolona  Wynik;
 if(Skl2==0)
 throw "nie dzili sie przez zero";
 
-  Wynik.re = Skl1.re / Skl2;
-  Wynik.im = Skl1.im / Skl2;
+  Wynik.re =  re / Skl2;
+  Wynik.im =  im / Skl2;
   return Wynik;
 }
-double mod2(LZespolona Skl)
+double LZespolona::mod2()
 {
-    return Skl.re*Skl.re+Skl.im*Skl.im;
+    return re*re+im*im;
 }
-LZespolona Sprzezenie(LZespolona Skl)
+LZespolona LZespolona::Sprzezenie()
 {
-    Skl.im=(-1)*Skl.im;
-    return Skl;
+    im=(-1)*im;
+    return *this;
 }
 
 void Wyswietl(LZespolona Skl)
@@ -74,9 +74,9 @@ void inicjalizuj(LZespolona &Skl)
     Skl.im=0;
 }
 
-bool  operator == (LZespolona  Skl1,  LZespolona  Skl2)
+const bool  LZespolona::operator == (   LZespolona  Skl2)const
 {
-    if(abs(Skl1.re-Skl2.re)<=EPSILON && abs(Skl1.im-Skl2.im)<=EPSILON)
+    if(abs( re-Skl2.re)<=EPSILON && abs( im-Skl2.im)<=EPSILON)
     {
         return true;
     }
@@ -84,9 +84,9 @@ bool  operator == (LZespolona  Skl1,  LZespolona  Skl2)
     return false;
 }
 
-bool  operator != (LZespolona  Skl1,  LZespolona  Skl2)
+bool  LZespolona::operator != (   LZespolona  Skl2)
 {
-    if(abs(Skl1.re-Skl2.re)>EPSILON || abs(Skl1.im-Skl2.im)>EPSILON)
+    if(abs( re-Skl2.re)>EPSILON || abs( im-Skl2.im)>EPSILON)
     {
         return true;
     }
@@ -125,16 +125,16 @@ std::istream & operator >> (std::istream &wej, LZespolona &Skl)
     return wej;
 }
 ///////////////////////////////////////////////
-double arg(LZespolona Lz1)
+double LZespolona::arg()
   {
       double wynik;
-      if(Lz1.re>0)
+      if( re>0)
       {
-          wynik=atan2(Lz1.im,Lz1.re) * 180 / M_PI;
+          wynik=atan2( im, re) * 180 / M_PI;
       }
-      else if (Lz1.re<0)
+      else if ( re<0)
       {
-          wynik=atan2(Lz1.im,Lz1.re) + M_PI * 180 / M_PI;
+          wynik=atan2( im, re) + M_PI * 180 / M_PI;
       }  
 
 
@@ -146,13 +146,13 @@ double arg(LZespolona Lz1)
       return wynik;
 
   }
-LZespolona operator +=(LZespolona &Lz1, LZespolona  Skl2)
+LZespolona LZespolona::operator +=( LZespolona  Skl2)
 {
-   Lz1=Lz1+Skl2;
-    return Lz1;
+    *this= *this+Skl2;
+    return  *this;
 }
-LZespolona operator /=(LZespolona &Lz1, LZespolona  Skl2)
+LZespolona LZespolona::operator /=( LZespolona  Skl2)
 {
-    Lz1=Lz1/Skl2;
-    return Lz1;
+     *this= *this/Skl2;
+    return  *this;
 }
